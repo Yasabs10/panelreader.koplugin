@@ -1,4 +1,5 @@
 # PanelReader Plugin
+Warning! Tested on Arch Linux and Kindle PW. Kumiko and helper process manga functionality is not tested under windows / macos!
 
 A comprehensive panel navigation system for KOReader that provides panel-to-panel navigation with support for both Western (LTR) and Japanese (RTL) reading directions.
 
@@ -15,13 +16,13 @@ A comprehensive panel navigation system for KOReader that provides panel-to-pane
 1. **Install the plugin** in KOReader's plugins directory
 2. **Generate panel data** for your manga using Kumiko (see setup guide below)
 3. **Open your manga** in KOReader
-4. **Enable Integration Mode**: `Tools → PanelReader → Enable Integration Mode`
+4. **Enable Integration Mode**: `Tools → MoreTools → Panel Zoom Integration
 5. **Start reading**: Long-press anywhere on the page to enter panel mode
 6. **Navigate**: Tap right side (LTR) or left side (RTL) to move between panels/pages
 
 ## 🛠️ Kumiko Setup Guide
 
-Kumiko is panel detection tool that generates the JSON panel data PanelReader uses. It's not available on PyPI, so you need to install it from the source repository.
+Kumiko is panel detection tool that generates the JSON panel data PanelReader uses. You need to install it from the source repository.
 
 ### System Requirements
 
@@ -75,20 +76,20 @@ Kumiko is panel detection tool that generates the JSON panel data PanelReader us
    sudo pacman -S python python-pip git
    ```
 
-2. **Install OpenCV**:
+2. **Install OpenCV and requests**:
    ```bash
    # Ubuntu/Debian (easiest method)
    sudo apt install python3-opencv
    
    # Alternative: Using pip
-   pip3 install opencv-python
+   pip3 install opencv-python requests
    
    # Fedora/CentOS
-   sudo dnf install python3-opencv
+   sudo dnf install python3-opencv requests
    
    # Arch Linux
-   sudo pacman -S python-opencv
-   ```
+   sudo pacman -S python-opencv requests
+   ``` 
 
 3. **Clone Kumiko repository**:
    ```bash
@@ -262,7 +263,7 @@ The script creates a `*.json` file with this structure:
 
 ## 🎯 Best Practices
 
-1. **High-quality manga**: Use kindle comick converter and use high-resolution scans for better panel detection
+1. **High-quality manga**: Use kindle comic converter and use high-resolution scans for better panel detection
 2. **Consistent naming**: Keep manga files and JSON in the same directory
 
 ## 🔄 Advanced Usage
