@@ -7,6 +7,13 @@ Plugin works both in portrait and landscape rotation.
 
 A comprehensive panel navigation system for KOReader that provides panel-to-panel navigation with support for both Western (LTR) and Japanese (RTL) reading directions.
 
+This plugin is designed to work with various panel detection methods. If you have improvements or find issues, the key areas are:
+
+- Memory usage optimization
+- QOL improvements
+- !Streamlined JSON generation -  this format is used to store panel coordinates - right now it's rather complicated for a casual user - Ideally working pipeline is KCC -> Kumiko (or other panel detection method -> Process output -> result
+
+
 ## 🚀 Key Features
 
 - **Automatic Page Navigation**: Seamlessly jump between pages when you reach the last/first panel
@@ -306,15 +313,7 @@ The plugin automatically loads the correct `*.json` based on:
 - **Platforms**: Android, Linux, Windows, macOS, Kindle, Kobo
 - **Reading directions**: LTR (Western), RTL (Japanese/Chinese)
 
-## 🤝 Contributing
 
-This plugin is designed to work with various panel detection methods. If you have improvements or find issues, the key areas are:
-
-- Page detection reliability
-- Tap zone responsiveness  
-- Memory usage optimization
-- QOL improvements
-- Streamlined JSON generation
 
 ## 📄 License
 
