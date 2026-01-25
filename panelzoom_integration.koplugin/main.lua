@@ -23,6 +23,7 @@ local PanelZoomIntegration = WidgetContainer:extend{
     _panel_cache = {}, -- Cache JSON per document
     _preloaded_image = nil, -- Pre-rendered next panel
     _preloaded_panel_index = nil, -- Index of preloaded panel
+    _is_switching = false, -- Debounce guard to prevent fast tap issues
 }
 
 -- Create a reusable PanelViewer class once
@@ -70,6 +71,12 @@ end
 
 -- Callback methods for PanelViewer
 function PanelZoomIntegration:nextPanel()
+    if self._is_switching then return end -- Block if already processing
+    self._is_switching = true
+    
+    -- Reset the flag after the UI has had a chance to breathe
+    UIManager:scheduleIn(0.1, function() self._is_switching = false end)
+    
     -- Check if we have preloaded the next panel
     if self._preloaded_image and self._preloaded_panel_index == self.current_panel_index + 1 then
         -- Use preloaded image for instant switch
@@ -90,6 +97,12 @@ function PanelZoomIntegration:nextPanel()
 end
 
 function PanelZoomIntegration:prevPanel()
+    if self._is_switching then return end -- Block if already processing
+    self._is_switching = true
+    
+    -- Reset the flag after the UI has had a chance to breathe
+    UIManager:scheduleIn(0.1, function() self._is_switching = false end)
+    
     if self.current_panel_index > 1 then
         self.current_panel_index = self.current_panel_index - 1
         self:displayCurrentPanel()
