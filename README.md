@@ -18,7 +18,7 @@ To ensure the plugin works correctly, apply the following settings:
 
 ## Available detection algorithms:
 
-* Kumiko - fastest, cpu
+* Kumiko - opencv, cpu
 * YOLO - min 1050 ti 4gb - CUDA*
 * MAGI - min 1050 ti 4gb - CUDA*
 
