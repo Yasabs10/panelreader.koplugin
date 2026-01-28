@@ -11,9 +11,7 @@ A panel-to-panel navigation system for KOReader that provides automated transiti
 To ensure the plugin works correctly, apply the following settings:
 
 * **Zoom:** Fit full page
-* **Bottom Bar:** No info shown
-* **Margins:** Do not crop
-
+  
 ---
 
 ## Available detection algorithms:
