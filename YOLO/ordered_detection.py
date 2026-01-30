@@ -36,8 +36,9 @@ def build_panel_dag(boxes):
     Build a Directed Acyclic Graph (DAG) for panel ordering.
     Panel A comes before B if:
     - A.y2 < B.y1 (A is above B) OR
-    - A and B are in same row AND A.x1 > B.x2 (RTL order)
-    Returns adjacency list and topological order.
+    - A and B are in same row AND A is to the right of B (RTL).
+    
+    *Updated to use Centroids for horizontal comparison to handle overlapping/intersecting panels.*
     """
     n = len(boxes)
     if n <= 1:
@@ -48,6 +49,10 @@ def build_panel_dag(boxes):
         adj = {i: [] for i in range(n)}
         in_degree = {i: 0 for i in range(n)}
         
+        # Precompute box centers (centroids)
+        # centers[i] = (center_x, center_y)
+        centers = [((b[0] + b[2]) / 2, (b[1] + b[3]) / 2) for b in boxes]
+        
         # Determine which boxes are in the same row
         same_row = {}
         for i in range(n):
@@ -57,7 +62,9 @@ def build_panel_dag(boxes):
                     # Check if boxes are in the same row (significant Y overlap)
                     y_overlap = min(boxes[i][3], boxes[j][3]) - max(boxes[i][1], boxes[j][1])
                     min_height = min(boxes[i][3] - boxes[i][1], boxes[j][3] - boxes[j][1])
-                    if y_overlap > min_height * 0.3:  # 30% Y overlap means same row
+                    
+                    # 30% overlap threshold for "Same Row"
+                    if y_overlap > min_height * 0.3:
                         same_row[i].append(j)
         
         # Build edges based on rules
@@ -66,15 +73,18 @@ def build_panel_dag(boxes):
                 if i != j:
                     box_i, box_j = boxes[i], boxes[j]
                     
-                    # Rule 1: A is above B (A.y2 < B.y1)
-                    if box_i[3] < box_j[1]:
+                    # Rule 1: A is strictly above B (A.y2 < B.y1)
+                    # We ensure they are NOT in the same row to avoid conflicts
+                    if j not in same_row[i] and box_i[3] < box_j[1]:
                         adj[i].append(j)
                         in_degree[j] += 1
                     
-                    # Rule 2: Same row and RTL order (A.x1 > B.x2)
-                    elif j in same_row[i] and box_i[0] > box_j[2]:
-                        adj[i].append(j)
-                        in_degree[j] += 1
+                    # Rule 2: Same row and RTL order
+                    # FIX: Compare CENTERS instead of edges to handle intersections
+                    elif j in same_row[i]:
+                        if centers[i][0] > centers[j][0]: # Right Center > Left Center
+                            adj[i].append(j)
+                            in_degree[j] += 1
         
         # Topological sort using Kahn's algorithm
         queue = [i for i in range(n) if in_degree[i] == 0]
@@ -82,8 +92,10 @@ def build_panel_dag(boxes):
         
         while queue:
             if len(queue) > 1:
-                # If multiple nodes have no dependencies, sort by Y position (top to bottom)
-                queue.sort(key=lambda i: boxes[i][1])
+                # If multiple nodes have no dependencies (e.g. start of new row), 
+                # sort them by Top-to-Bottom, then Right-to-Left.
+                # Key: (Y_min, -X_min) -> Smaller Y first, then Larger X first
+                queue.sort(key=lambda i: (boxes[i][1], -boxes[i][0]))
             
             u = queue.pop(0)
             topo_order.append(u)
@@ -93,10 +105,13 @@ def build_panel_dag(boxes):
                 if in_degree[v] == 0:
                     queue.append(v)
         
-        # Fallback: if topological sort failed, return natural order
+        # Fallback: if topological sort failed (cycles), return broadly sorted list
         if len(topo_order) != n:
-            print("Warning: Topological sort incomplete, using natural order")
-            return list(range(n)), adj
+            print("Warning: Topological sort incomplete, using fallback spatial sort")
+            # Sort by approximate Row (Y // 100), then Right-to-Left (-X)
+            indices = list(range(n))
+            indices.sort(key=lambda i: (boxes[i][1] // 50, -boxes[i][0]))
+            return indices, adj
             
         return topo_order, adj
         
@@ -171,17 +186,34 @@ def detect_gutters_and_refine_boxes(boxes, gray_image):
             x1, y1, x2, y2 = box
             refined_box = box.copy()
             
-            # For RTL: prioritize right gutters first, then left gutters
-            # Find nearest right gutter (RTL: panels end at right gutter)
-            right_gutters = [g for g in vertical_gutters if g > x2 and abs(g - x2) < width // 15]
-            if right_gutters:
-                refined_box[2] = min(right_gutters[0] - 1, refined_box[2])  # Move left to gutter
+            # Calculate panel aspect ratio to detect horizontal panels
+            panel_width = x2 - x1
+            panel_height = y2 - y1
+            aspect_ratio = panel_width / panel_height
             
-            # Find nearest left gutter (RTL: panels start at left gutter)
-            left_gutters = [g for g in vertical_gutters if g < x1 and abs(g - x1) < width // 15]
-            if left_gutters:
-                refined_box[0] = max(left_gutters[-1] + 1, refined_box[0])  # Move right to gutter
+            # Consider it a horizontal panel if width is > 2x height
+            is_horizontal_panel = aspect_ratio > 2.0
             
+            if is_horizontal_panel:
+                # For horizontal panels in RTL: only adjust right side
+                # Horizontal panels should extend to left edge, only right side aligns to gutters
+                right_gutters = [g for g in vertical_gutters if g > x2 and abs(g - x2) < width // 15]
+                if right_gutters:
+                    refined_box[2] = min(right_gutters[0] - 1, refined_box[2])  # Move left to gutter
+                    print(f"  Horizontal panel: adjusted right edge from {x2} to {refined_box[2]}")
+            else:
+                # For regular panels in RTL: apply both left and right gutter adjustments
+                # Find nearest right gutter (RTL: panels end at right gutter)
+                right_gutters = [g for g in vertical_gutters if g > x2 and abs(g - x2) < width // 15]
+                if right_gutters:
+                    refined_box[2] = min(right_gutters[0] - 1, refined_box[2])  # Move left to gutter
+                
+                # Find nearest left gutter (RTL: panels start at left gutter)
+                left_gutters = [g for g in vertical_gutters if g < x1 and abs(g - x1) < width // 15]
+                if left_gutters:
+                    refined_box[0] = max(left_gutters[-1] + 1, refined_box[0])  # Move right to gutter
+            
+            # Apply vertical gutter adjustments for all panels
             # Find nearest top gutter
             top_gutters = [g for g in horizontal_gutters if g < y1 and abs(g - y1) < height // 15]
             if top_gutters:
