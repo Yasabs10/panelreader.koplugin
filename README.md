@@ -1,6 +1,12 @@
 # PanelReader for KOReader
 
-A panel-to-panel navigation system for KOReader that provides automated transitions between manga panels. It supports both Western (LTR) and Japanese (RTL) reading directions.
+KOReader-native Guided View, adapted for:
+
+open formats
+
+e-ink 
+
+performance
 
 ## Available detection algorithms:
 
